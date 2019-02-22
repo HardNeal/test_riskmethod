@@ -1,2 +1,24 @@
-<h1>Homepages#index</h1>
-<p>Find me in app/views/homepages/index.html.erb</p>
+<h2>Movies</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Category title</th>
+    <th>Rating</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.id %></td>
+        <td><%= movie.title %></td>
+        <td><%= movie.category.title %></td>
+        <td>0</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
