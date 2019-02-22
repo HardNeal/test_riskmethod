@@ -16,7 +16,11 @@
         <td><%= movie.id %></td>
         <td><%= movie.title %></td>
         <td><%= movie.category.title %></td>
-        <td>0</td>
+        <td><%= movie.ratings.average(:star) %></td>
+        <td><%= link_to 'Изменить', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Удалить', movie_path(movie), 
+                                   method: :delete, 
+                                   data: { confirm: 'Are u sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
