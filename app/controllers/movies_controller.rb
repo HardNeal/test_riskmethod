@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   def index
+    @my_movies = current_user.movies
   end
 
   def show
