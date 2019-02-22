@@ -1,24 +1,3 @@
-<h2>Movies</h2>
-<table class="table">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Category title</th>
-    <th>Rating average</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.id %></td>
-        <td><%= movie.title %></td>
-        <td><%= movie.category.title %></td>
-        <td>0</td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<br>
+<% @categories.each do |category| %>
+  <%= link_to "#{category.title}", homepage_path(category) %> (<%= category.movies.size %>) <br />
+<% end %>

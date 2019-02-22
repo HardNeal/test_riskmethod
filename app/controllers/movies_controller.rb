@@ -16,10 +16,10 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(constructor_params)
+    @movie = Movie.new(movie_params)
 
     if @movie.save
-      redirect_to constructor_index_path,
+      redirect_to root_path,
         notice: 'Movie was successfully created.'
     else
       render :new
@@ -28,8 +28,8 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    if @movie.update(constructor_params)
-      redirect_to constructor_index_path,
+    if @movie.update(movie_params)
+      redirect_to root_path,
         notice: 'Movie was successfully updated.'
     else
       render :edit
@@ -39,11 +39,26 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to constructor_index_path, notice: 'Movie was successfully destroyed.'
+    redirect_to root_path, notice: 'Movie was successfully destroyed.'
+  end
+
+  def create_rating
+    @rating = Rating.new(rating_params)
+
+    if @rating.save
+      redirect_to root_path,
+      notice: 'Rating was successfully created.'
+    else
+      redirect_to root_path, notice: 'you have already voted'
+    end
   end
 
   private
-  def constructor_params
+  def movie_params
     params.require(:movie).permit(:title, :user_id, :category_id)
+  end
+
+  def rating_params
+    params.require(:rating).permit(:star, :user_id, :movie_id)
   end
 end
