@@ -46,11 +46,14 @@ class MoviesController < ApplicationController
   def create_rating
     @rating = Rating.new(rating_params)
 
-    if @rating.save
-      redirect_to root_path,
-      notice: 'Rating was successfully created.'
-    else
-      redirect_to root_path, notice: 'you have already voted'
+    respond_to do |format|
+      if @rating.save
+        format.html { redirect_to homepage_path(@rating.movie.category),
+                      notice: 'Rating was successfully created.'}
+      else
+        format.html { redirect_to homepage_path(@rating.movie.category),
+                      notice: 'you have already voted.'}
+      end
     end
   end
 

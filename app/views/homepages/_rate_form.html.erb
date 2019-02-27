@@ -1,12 +1,15 @@
-<%= form_with model: Rating.new, url: create_rating_path, local: true, html: {class: 'form-horizontal'} do |form| %>
-    <%= form.hidden_field :movie_id, :value => movie.id %>
-    <%= form.hidden_field :user_id, :value => current_user.id %>
+<%= form_with model: Rating.new, url: create_rating_path, 
+                                 remote: true,
+                                 local: true, 
+                                 html: {class: 'form-horizontal'} do |form| %>
+  <%= form.hidden_field :movie_id, :value => movie.id %>
+  <%= form.hidden_field :user_id, :value => current_user.id %>
 
-    <div class="form-group">
-      <%= form.label :star, 'rate', class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-      <%= form.collection_select :star, [1, 2, 3, 4, 5], :to_i, :to_s, include_blank: false %>
-      <%= form.submit 'estimate', class: '' %>
-      </div>
+  <div class="form-group">
+    <%= form.label :star, 'rate', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+    <%= form.collection_select :star, [1, 2, 3, 4, 5], :to_i, :to_s, include_blank: false %>
+    <%= form.submit 'estimate', class: '' %>
     </div>
-  <% end %>
+  </div>
+<% end %>

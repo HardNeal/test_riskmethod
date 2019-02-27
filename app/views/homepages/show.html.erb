@@ -13,17 +13,7 @@
 
   <tbody>
   <% @category.each do |movie| %>
-      <tr>
-        <td><%= movie.id %></td>
-        <td><%= movie.title %></td>
-        <td><%= movie.category.title %></td>
-        <td><%= movie.ratings.average(:star) %></td>
-        <% if user_signed_in? %>
-          <td>
-            <%= render 'rate_form', movie: movie %>
-          </td>
-        <% end %>
-      </tr>
+      <%= render 'movie_list', movie: movie %>
   <% end %>
   </tbody>
 </table>
